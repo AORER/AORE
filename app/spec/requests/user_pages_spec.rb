@@ -4,7 +4,7 @@ describe "User pages" do
 
   subject { page }
 
- describe "profile page" do
+  describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
@@ -19,7 +19,7 @@ describe "User pages" do
     it { should have_selector('title', text: full_title('Sign up')) }
   end
 
- describe "signup" do
+  describe "signup" do
 
     before { visit signup_path }
 
@@ -49,6 +49,32 @@ describe "User pages" do
         it { should have_link('Sign out') }
       end
     end
+  end
+  
+  describe "index" do
+    before do
+      FactoryGirl.create(:user, name: "Bob")
+      FactoryGirl.create(:user, name: "Ben")
+      visit users_path
+    end
+
+    it { should have_selector('title', text: 'All users') }
+    it { should have_selector('h1',    text: 'All users') }
+
+    it "should list each user" do
+      User.all.each do |user|
+        page.should have_selector('li', text: user.name)
+      end
+    end
+
+    describe "delete links" do      
+      it { should have_link('delete', href: user_path(User.first)) }
+      it "should be able to delete another user" do
+        expect { click_link('delete') }.to change(User, :count).by(-1)
+      end
+      
+    end
+
   end
 
 end

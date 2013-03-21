@@ -10,6 +10,8 @@ describe "Static pages" do
     it { should have_selector('h1',    text: 'Sample App') }
     it { should have_selector('title', text: full_title('')) }
     it { should_not have_selector 'title', text: '| Home' }
+
+    it { should have_link('Users',    href: users_path) }
   end
 
   describe "Help page" do
