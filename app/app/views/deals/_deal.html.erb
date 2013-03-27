@@ -1,7 +1,9 @@
 <li>
   <span class="string"><%= deal.to_s %></span>
     <% if deal.receiver_id.nil? %>
-    	 <li><%= link_to "send", users_path %></li>
+		 <li><%= link_to "assign", edit_deal_path(deal) %></li>
+	<% else %>
+		 <li><%= "assigned to " + User.find(deal.receiver_id).name  %></li>	 
     <% end %>
   </span>
 </li>

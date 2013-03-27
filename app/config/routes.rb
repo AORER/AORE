@@ -1,5 +1,6 @@
 App::Application.routes.draw do
   resources :users
+  resources :deals
   resources :sessions, only: [:new, :create, :destroy]
   resources :purchases, only: [:new, :create, :destroy]
 

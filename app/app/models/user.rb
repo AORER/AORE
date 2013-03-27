@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name # TODO read only
   has_many :purchases , dependent: :destroy
   has_many :outgoing_deals, foreign_key: "purchaser_id", class_name: "Deal", dependent: :destroy
-  has_many :incoming_deals, through: :outgoing_deals, source: :receiver
+  has_many :incoming_deals, foreign_key: "receiver_id", class_name: "Deal", dependent: :destroy
 
   before_save :create_remember_token
 

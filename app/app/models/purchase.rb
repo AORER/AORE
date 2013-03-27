@@ -6,6 +6,6 @@ class Purchase < ActiveRecord::Base
   default_scope order: 'purchases.created_at DESC'
 
   def to_s
-    "original_price: " + original_price.to_s + " ,price_after_discount: " + price_after_discount.to_s + " ,used_points: " + used_points.to_s + " ,new_points: " + new_points.to_s + " , "
+    "original price: " + original_price.to_s + " ,after discount: " + price_after_discount.to_s + " ,used points: " + used_points.to_s + " ,new points: " + new_points.to_s + " , "
    end
 end
