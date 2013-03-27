@@ -7,4 +7,28 @@
       </h1>
     </section>
   </aside>
+  <div class="span2 offset3">
+    <% if @user.incoming_deals.any? %>
+     <h3>incoming_deals (<%= @user.incoming_deals.count %>)</h3>
+      <ol class="deal">
+        <%= render @incoming_deals %>
+      </ol>
+    <% end %>
+  </div>
+  <div class="span9">
+    <% if @user.outgoing_deals.any? %>
+      <h3>outgoing_deals (<%= @user.outgoing_deals.count %>)</h3>
+      <ol class="deal">
+        <%= render @outgoing_deals %>
+      </ol>
+    <% end %>
+  </div>
+  <div class="span20">
+    <% if @user.purchases.any? %>
+      <h3>Purchases (<%= @user.purchases.count %>)</h3>
+      <ol class="purchases">
+        <%= render @purchases %>
+      </ol>
+    <% end %>
+  </div>
 </div>

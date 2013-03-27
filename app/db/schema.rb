@@ -11,7 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321133138) do
+ActiveRecord::Schema.define(:version => 20130327155134) do
+
+  create_table "deals", :force => true do |t|
+    t.integer  "purchaser_id"
+    t.integer  "receiver_id"
+    t.integer  "purchaser_bonus_points"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "points_for_distribution"
+  end
+
+  add_index "deals", ["created_at"], :name => "index_deals_on_created_at"
+  add_index "deals", ["purchaser_id"], :name => "index_deals_on_purchaser_id"
+  add_index "deals", ["receiver_id"], :name => "index_deals_on_receiver_id"
+
+  create_table "purchases", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "original_price"
+    t.float    "price_after_discount"
+    t.integer  "used_points"
+    t.integer  "new_points"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  add_index "purchases", ["user_id", "created_at"], :name => "index_purchases_on_user_id_and_created_at"
 
   create_table "users", :force => true do |t|
     t.string   "name"

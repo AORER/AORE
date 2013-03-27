@@ -1,0 +1,6 @@
+<li>
+  <span class="purchase"><%= purchase.to_s %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(purchase.created_at) %> ago.
+  </span>
+</li>

@@ -2,6 +2,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @purchases = @user.purchases
+    @outgoing_deals = @user.outgoing_deals
+    @incoming_deals = @user.incoming_deals
   end
 
   def new
