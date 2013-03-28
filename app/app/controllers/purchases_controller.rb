@@ -11,7 +11,7 @@ class PurchasesController < ApplicationController
     @new_points = @original_price / 10
     @deal = @user.outgoing_deals.build(purchaser_bonus_points: @new_points - 1, points_for_distribution: @new_points, used: false)
   	@purchase = @user.purchases.build(original_price: @original_price, used_points: @used_points, price_after_discount: @price_after_discount, new_points: @new_points)
-    if @purchase.save! &&  @deal.save!
+    if @purchase.save &&  @deal.save
       flash[:success] = "purchase created!"
       redirect_to user_path(@user)
     else
