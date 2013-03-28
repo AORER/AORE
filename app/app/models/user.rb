@@ -8,6 +8,35 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
 
+
+ def points
+      total = 0
+      incoming_deals.each do |d|
+          if !d.used
+            total += d.points_for_distribution
+            puts "aaaaaaaaaaaaaaaaaa"
+            puts d.inspect
+            puts d.used?.to_s
+            #self.incoming_deals.delete(d)
+            d.used=true
+            puts "bbbbbbbbbb"
+            puts d.used?.to_s
+            d.save
+          end
+      end
+
+      outgoing_deals.each do |d|
+         if d.used
+            total += d.purchaser_bonus_points
+            User.find(d.purchaser_id).outgoing_deals.delete(d)
+            d.destroy
+            d.save
+        end
+      end
+    return total
+  end
+
+
   private
 
     def create_remember_token

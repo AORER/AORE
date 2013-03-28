@@ -1,9 +1,17 @@
 <li>
-  <span class="string"><%= deal.to_s %></span>
-    <% if deal.receiver_id.nil? %>
-		 <li><%= link_to "assign", edit_deal_path(deal) %></li>
-	<% else %>
-		 <li><%= "assigned to " + User.find(deal.receiver_id).name  %></li>	 
-    <% end %>
-  </span>
+ 	<% if deal.purchaser_id==@user.id %>
+		<span class="string"><%= deal.to_s_sender %>
+	    <% if deal.receiver_id.nil? && !deal.used %>
+			 <%= link_to "send now!", edit_deal_path(deal) %>
+		<% elsif !deal.used  %>
+			 <%= " sent to " + User.find(deal.receiver_id).name  %>	 
+		<% else %>
+			<%= "Deal has been applied! You have received " + pluralize(deal.purchaser_bonus_points, 'point') + "."%>	 	 
+	    <% end %>
+	  </span>
+   <% else %>
+    	<% if !deal.used %>
+   			<span class="string"><%= deal.to_s_receiver %></span>
+   		<% end %>
+   <% end %>
 </li>

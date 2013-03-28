@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327155134) do
+ActiveRecord::Schema.define(:version => 20130328130711) do
 
   create_table "deals", :force => true do |t|
     t.integer  "purchaser_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130327155134) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "points_for_distribution"
+    t.boolean  "used"
   end
 
   add_index "deals", ["created_at"], :name => "index_deals_on_created_at"
