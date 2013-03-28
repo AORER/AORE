@@ -149,10 +149,12 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 20%;
+  width: 30%;
   padding: 1px;
   margin-bottom: 15px;
+  vertical-align:top;
   @include box_sizing;
+  
 }
 
 input {

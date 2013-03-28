@@ -3,7 +3,7 @@
 		<span class="string"><%= deal.to_s_sender %>
 	    <% if deal.receiver_id.nil? && !deal.used %>
 			 <%= form_for(deal) do |f| %>
-			  <%= f.label "Select User", class: "span1" %>
+			  <%= f.label "Select User", class: "span2" %>
 			  <%= f.select :receiver_id, options_for_select(User.all.reject{|a| a.id==deal.purchaser_id}.collect{ |u| [u.name , u.id]}) %>
 		      <%= f.submit "Send", class: "btn btn-small btn-primary" %>
 		    <% end %>

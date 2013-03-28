@@ -14,13 +14,7 @@ class User < ActiveRecord::Base
       incoming_deals.each do |d|
           if !d.used
             total += d.points_for_distribution
-            puts "aaaaaaaaaaaaaaaaaa"
-            puts d.inspect
-            puts d.used?.to_s
-            #self.incoming_deals.delete(d)
             d.used=true
-            puts "bbbbbbbbbb"
-            puts d.used?.to_s
             d.save
           end
       end
