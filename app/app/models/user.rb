@@ -36,7 +36,6 @@ class User < ActiveRecord::Base
     return total
   end
 
-
   private
 
     def create_remember_token

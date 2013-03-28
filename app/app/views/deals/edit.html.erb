@@ -1,10 +1,8 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@deal) do |f| %>
-      <%= f.label :receiver_id %>
-      <%= f.text_field :receiver_id %>
-
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+	  <%= f.select :receiver_id, options_for_select(User.all.reject{|a| a.id==@deal.purchaser_id}.collect{ |u| [u.name , u.id]}) %>
+      <%= f.submit "Send", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
